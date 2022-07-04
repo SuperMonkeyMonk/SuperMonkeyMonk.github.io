@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>JSÌ°³ÔÉß</title>
+<title>JSè´ªåƒè›‡</title>
     <style type="text/css">
         #pannel table {
         border-collapse: collapse;
         }
         #pannel table td {
         border: 1px solid #808080;
-        width: 10px;
-        height: 10px;
+        width: 100px;
+        height: 100px;
         font-size: 0;
         line-height: 0;
         overflow: hidden;
@@ -33,9 +33,9 @@
 
 
     var Common = new function () {
-        this.width = 20; /*Ë®Æ½·½Ïò·½¸ñÊı*/
-        this.height = 20; /*´¹Ö±·½Ïò·½¸ñÊı*/
-        this.speed = 250; /*ËÙ¶È ÖµÔ½Ğ¡Ô½¿ì*/
+        this.width = 200; /*æ°´å¹³æ–¹å‘æ–¹æ ¼æ•°*/
+        this.height = 200; /*å‚ç›´æ–¹å‘æ–¹æ ¼æ•°*/
+        this.speed = 250; /*é€Ÿåº¦ å€¼è¶Šå°è¶Šå¿«*/
         this.workThread = null;
     };
 
@@ -44,18 +44,18 @@
         var control = new Control();
         window.onload = function () {
         control.Init("pannel");
-            /*¿ªÊ¼°´Å¥*/
+            /*å¼€å§‹æŒ‰é’®*/
             document.getElementById("btnStart").onclick = function () {
                 control.Start();
                 this.disabled = true;
                 document.getElementById("selSpeed").disabled = true;
                 document.getElementById("selSize").disabled = true;
             };
-            /*µ÷ËÙ¶È°´Å¥*/
+            /*è°ƒé€Ÿåº¦æŒ‰é’®*/
             document.getElementById("selSpeed").onchange = function () {
                 Common.speed = this.value;
             }
-            /*µ÷´óĞ¡°´Å¥*/
+            /*è°ƒå¤§å°æŒ‰é’®*/
             document.getElementById("selSize").onchange = function () {
                 Common.width = this.value;
                 Common.height = this.value;
@@ -63,11 +63,11 @@
             }
         };
     };
-    /*¿ØÖÆÆ÷*/
+    /*æ§åˆ¶å™¨*/
     function Control() {
         this.snake = new Snake();
         this.food = new Food();
-        /*³õÊ¼»¯º¯Êı£¬´´½¨±í¸ñ*/
+        /*åˆå§‹åŒ–å‡½æ•°ï¼Œåˆ›å»ºè¡¨æ ¼*/
             this.Init = function (pid) {
             var html = [];
             html.push("<table>");
@@ -82,7 +82,7 @@
             this.pannel = document.getElementById(pid);
             this.pannel.innerHTML = html.join("");
         };
-        /*¿ªÊ¼ÓÎÏ· - ¼àÌı¼üÅÌ¡¢´´½¨Ê³Îï¡¢Ë¢ĞÂ½çÃæÏß³Ì*/
+        /*å¼€å§‹æ¸¸æˆ - ç›‘å¬é”®ç›˜ã€åˆ›å»ºé£Ÿç‰©ã€åˆ·æ–°ç•Œé¢çº¿ç¨‹*/
         this.Start = function () {
             var me = this;
             this.MoveSnake = function (ev) {
@@ -102,20 +102,20 @@
     }
 
 
-    /*Éß*/
+    /*è›‡*/
     function Snake() {
         this.isDone = false;
         this.dir = Direction.RIGHT;
         this.pos = new Array(new Position());
-        /*ÒÆ¶¯ - ²Á³ıÎ²²¿£¬ÏòÇ°ÒÆ¶¯£¬ÅĞ¶ÏÓÎÏ·½áÊø(Ò§µ½×Ô¼º»òÕßÒÆ³ö±ß½ç)*/
+        /*ç§»åŠ¨ - æ“¦é™¤å°¾éƒ¨ï¼Œå‘å‰ç§»åŠ¨ï¼Œåˆ¤æ–­æ¸¸æˆç»“æŸ(å’¬åˆ°è‡ªå·±æˆ–è€…ç§»å‡ºè¾¹ç•Œ)*/
         this.Move = function () {
             document.getElementById("box_" + this.pos[0].X + "_" + this.pos[0].Y).className = "";
-        //ËùÓĞ ÏòÇ°ÒÆ¶¯Ò»²½
+        //æ‰€æœ‰ å‘å‰ç§»åŠ¨ä¸€æ­¥
             for (var i = 0; i < this.pos.length - 1; i++) {
                 this.pos[i].X = this.pos[i + 1].X;
                 this.pos[i].Y = this.pos[i + 1].Y;
             }
-        //ÖØĞÂÉèÖÃÍ·µÄÎ»ÖÃ
+        //é‡æ–°è®¾ç½®å¤´çš„ä½ç½®
             var head = this.pos[this.pos.length - 1];
             switch (this.dir) {
                 case Direction.UP:
@@ -132,7 +132,7 @@
                 break;
             }
             this.pos[this.pos.length - 1] = head;
-            //±éÀú»­Éß£¬Í¬Ê±ÅĞ¶ÏÓÎÏ·½áÊø
+            //éå†ç”»è›‡ï¼ŒåŒæ—¶åˆ¤æ–­æ¸¸æˆç»“æŸ
             for (var i = 0; i < this.pos.length; i++) {
                 var isExits = false;
                 for (var j = i + 1; j < this.pos.length; j++)
@@ -142,26 +142,26 @@
                     }
                     if (isExits) { 
                         this.Over();
-                        /*Ò§×Ô¼º*/ 
+                        /*å’¬è‡ªå·±*/ 
                         break; 
                     }
                     var obj = document.getElementById("box_" + this.pos[i].X + "_" + this.pos[i].Y);
                     if (obj) obj.className = "snake"; 
                     else { 
                         this.Over();
-                        /*ÒÆ³ö±ß½ç*/ 
+                        /*ç§»å‡ºè¾¹ç•Œ*/ 
                         break; 
                     }
             }
                 this.isDone = true;
         };
-        /*ÓÎÏ·½áÊø*/
+        /*æ¸¸æˆç»“æŸ*/
         this.Over = function () {
             clearInterval(Common.workThread);
-            alert("ÓÎÏ·½áÊø£¡");
+            alert("æ¸¸æˆç»“æŸï¼");
             location.reload();
         }
-    /*³ÔÊ³Îï*/
+    /*åƒé£Ÿç‰©*/
         this.Eat = function (food) {
             var head = this.pos[this.pos.length - 1];
             var isEat = false;
@@ -184,7 +184,7 @@
                 food.Create(this.pos);
             }
         };
-        /*¿ØÖÆÒÆ¶¯·½Ïò*/
+        /*æ§åˆ¶ç§»åŠ¨æ–¹å‘*/
         this.SetDir = function (dir) {
             switch (dir) {
                 case Direction.UP:
@@ -202,14 +202,14 @@
             }
         };
     }
-    /*Ê³Îï*/
+    /*é£Ÿç‰©*/
     function Food() {
         this.pos = new Position();
-        /*´´½¨Ê³Îï - Ëæ»úÎ»ÖÃ´´½¨Á¢*/
+        /*åˆ›å»ºé£Ÿç‰© - éšæœºä½ç½®åˆ›å»ºç«‹*/
             this.Create = function (pos) {
                 document.getElementById("box_" + this.pos.X + "_" + this.pos.Y).className = "";
                 var x = 0, y = 0, isCover = false;
-                /*ÅÅ³ıÉßµÄÎ»ÖÃ*/
+                /*æ’é™¤è›‡çš„ä½ç½®*/
                 do {
                     x = parseInt(Math.random() * (Common.width - 1));
                     y = parseInt(Math.random() * (Common.height - 1));
@@ -244,55 +244,17 @@
             <option value="40">40*40</option>
         </select>
         <select id="selSpeed">
-            <option value="500">ËÙ¶È-Âı</option>
-            <option value="250" selected="selected">ËÙ¶È-ÖĞ</option>
-            <option value="100">ËÙ¶È-¿ì</option>
+            <option value="500">é€Ÿåº¦-æ…¢</option>
+            <option value="250" selected="selected">é€Ÿåº¦-ä¸­</option>
+            <option value="100">é€Ÿåº¦-å¿«</option>
         </select>
-    <input type="button" id="btnStart" value="¿ªÊ¼" />
+    <input type="button" id="btnStart" value="å¼€å§‹" />
     </body>
 </html>  -->
 
 
 
-    <!-- ++++++++++++++++++++++++++++++++++++++++Ì°³ÔÉß¾«¼ò°æ£¬ÉÏÃæÎª½ÏÍêÉÆ°æ++++++++++++++++++++++++++++++++++++++++  -->
-    <html>
-        <body>
-            <canvas id="can" width="400" height="400" style="background:Black"></canvas>
-            <script>
-                var sn=[42,41],dz=43,fx=1,n,ctx=document.getElementById("can").getContext("2d");
-                function draw(t,c){
-                    ctx.fillStyle=c;
-                    ctx.fillRect(t%20*20+1,~~(t/20)*20+1,18,18);
-                }
-                document.onkeydown=function(e){fx=sn[1]-sn[0]==(n=[-1,-20,1,20][(e||event).keyCode-37]||fx)?fx:n};
-                !function(){
-                    sn.unshift(n=sn[0]+fx);
-                    if(sn.indexOf(n,1)>0 || n<0||n>399||fx==1&&n%20==0||fx==-1&&n%20==19){
-                        return alert("GAME OVER");
-                        refesh(); 
-                    } 
-                    draw(n,"Lime");
-                    if(n==dz){
-                        while(sn.indexOf(dz=~~(Math.random()*400))>=0);
-                        draw(dz,"Yellow");
-                    }else{
-                        draw(sn.pop(),"Black");
-                    }
-                    setTimeout(arguments.callee,130);
-                }();
-
-                function refesh(){
-                      location.reload();
-                }
-            </script>
-        </body>
-    </html>
-
-
-
-
-
-
+    
 
 
 
