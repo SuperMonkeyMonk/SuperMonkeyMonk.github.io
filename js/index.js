@@ -142,7 +142,7 @@ class HyperSpace {
           context.fillRect(0, 0, innerWidth, innerHeight);
        }
 
-setTimeout(function(){window.location.href="snake.html"},1000);
+setTimeout(function(){window.location.href="qmm.html"},1000);
       } else {
         if (
         Math.random() > 0.5 &&
