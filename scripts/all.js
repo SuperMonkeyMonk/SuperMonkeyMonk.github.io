@@ -417,16 +417,11 @@ define("scripts/main.js", function(exports){
 	exports.start = function(){
 	
 	    [ timeline, sence, control ].invoke( "init" );
+log( "正在启动游戏，可能较慢，请耐心等待..." ) ;setTimeout(function(){
+log.clear()},10000)
+;
 	
-	    log( "正在加载鼠标控制脚本" );
-	    log( "正在加载图像资源" );
-		log( "正在加载游戏脚本" );
-	    log( "正在加载剧情" );
-	    log( "正在初始化" );
-		log( "正在启动游戏..." );
-	    log.clear();
-	
-	    setTimeout( sence.switchSence.saturate( sence, "home-menu" ), 3000 );
+	    setTimeout(sence.switchSence.saturate( sence, "home-menu" ), 3000 );
 	};
 	
 	message.addEventListener("slice", function( knife ){
@@ -691,8 +686,8 @@ define("scripts/sence.js", function(exports){
 	
 	// to enter quit page
 	exports.showQuit = function( callback ){
-	    developing.show( 250 );
-	    setTimeout( callback, 1500 );
+	     window.location.href="index.html"
+;
 	};
 	
 	// to exit quit page
